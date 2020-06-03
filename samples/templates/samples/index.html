@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% include "samples/_style.html" %}
+
 </head>
 <body>
 <h1>
     Welcome to our site
 </h1>
+<img src="https://www.pac.dfo-mpo.gc.ca/sep-pmvs/images/salmon-saumon.jpg" alt="">
+<br>
 
 <a href="{% url 'sample-list' %}">Click here to view samples</a>
 

@@ -3,24 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        table, td, th {
-            border: 1px solid black;
-        }
-    </style>
-
+    {% include "samples/_style.html" %}
 </head>
 <body>
 <h1>
     Here are a list of samples
 </h1>
 
-<a href="{% url 'sample-new'  %}">create a new sample</a>
+<a href="{% url 'index' %}">home</a> <br>
+<a href="{% url 'sample-new' %}">create a new sample</a>
 <br>
 <br>
 
 <table>
     <thead>
+    <th>id</th>
     <th>date</th>
     <th>sampler name</th>
     <th>location</th>
@@ -29,10 +26,11 @@
 
     {% for object in object_list %}
         <tr>
+            <td>{{ object.id }}</td>
             <td>{{ object.date }}</td>
             <td>{{ object.sampler_name }}</td>
             <td>{{ object.location }}</td>
-            <td><a href="{% url 'sample-detail' object.id %}">view details</a></td>
+            <td>(<a href="{% url 'sample-detail' object.id %}">view details</a>)</td>
         </tr>
     {% endfor %}
 

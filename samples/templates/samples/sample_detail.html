@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        table, td, th {
-            border: 1px solid black;
-        }
-    </style>
+    {% include "samples/_style.html" %}
 </head>
 <body>
 <h1>
@@ -41,14 +37,42 @@
 
 <a href="{% url 'obs-new' object.id %}">new observation</a>
 <h3>Here is a list of related observations</h3>
-<ul>
 
+<table>
+
+
+    <thead>
+    <th>id</th>
+    <th>length</th>
+    <th>weight</th>
+    <th>sex</th>
+    <th>maturity</th>
+    <th>gonad weight</th>
+    <th>parasites?</th>
+    <th>remarks</th>
+
+
+    </thead>
+    <tbody>
     {% for obs in object.observations.all %}
-        <li>
-        {{ obs }}  (<a href="{% url 'obs-edit' obs.id  %}">edit</a>)
-        </li>
+        <tr>
+            <td>{{ obs.id }}</td>
+            <td>{{ obs.length }}</td>
+            <td>{{ obs.weight }}</td>
+            <td>{{ obs.get_sex_display }}</td>
+            <td>{{ obs.get_maturity_display }}</td>
+            <td>{{ obs.gonad_weight }}</td>
+            <td>{{ obs.parasite }}</td>
+            <td>{{ obs.remarks }}</td>
+            <td>
+
+                (<a href="{% url 'obs-edit' obs.id %}">edit</a>)
+            </td>
+        </tr>
     {% endfor %}
-</ul>
+
+    </tbody>
+</table>
 
 
 </body>
