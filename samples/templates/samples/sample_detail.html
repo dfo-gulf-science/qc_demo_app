@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, td, th {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    {{ object }}
+</h1>
+<a href="{% url 'sample-list' %}">back to sample list</a>
+<br>
+<br>
+<table>
+    <tr>
+        <th>id</th>
+        <td>{{ object.id }}</td>
+    </tr>
+    <tr>
+        <th>sampler name</th>
+        <td>{{ object.sampler_name }}</td>
+    </tr>
+    <tr>
+        <th>location</th>
+        <td>{{ object.location }}</td>
+    </tr>
+    <tr>
+        <th>remarks</th>
+        <td>{{ object.remarks }}</td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+
+<a href="{% url 'obs-new' object.id %}">new observation</a>
+<h3>Here is a list of related observations</h3>
+<ul>
+
+    {% for obs in object.observations.all %}
+        <li>
+        {{ obs }}  (<a href="{% url 'obs-edit' obs.id  %}">edit</a>)
+        </li>
+    {% endfor %}
+</ul>
+
+
+</body>
+</html>
+
+
